@@ -204,12 +204,15 @@ function animateValue(id, start, end, duration) {
 
     <p class = "money-currency">KR</p>
   </div>
+
 </div>
 
   <style>
     .main{
       display: flex;
       flex-direction: column;
+      max-width: 90%;
+      height: 100%;
     }
     .clocking{
       display: flex;
