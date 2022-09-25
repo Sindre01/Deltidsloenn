@@ -22,7 +22,7 @@
 	</h1>
 
 	<h2>
-		Regner ut lønn inkludert kveldstillegg
+		Regner ut lønn inkludert kveldstillegg utifra <a href="https://www.virke.no/tariff-og-lonn/finn-tariffavtale/landsoverenskomsten-hk/" style="color: red">HK</a>
 	</h2>
 	<Form/>
 
@@ -40,6 +40,9 @@
 	h1 {
 		width: 100%;
 		font-style: italic;
+	}
+	h2{
+		margin-bottom: 50px;
 	}
 
 

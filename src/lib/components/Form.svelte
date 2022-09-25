@@ -157,13 +157,15 @@ function animateValue(id, start, end, duration) {
   
   <!-- <h2> Klokkeslett: </h2> -->
   <div class = "clocking">
-    <Select class="shaped-outlined" variant="outlined" bind:value={startTime} label="Begynner">
-        <Icon class="material-icons" slot="leadingIcon">schedule</Icon>
-        
-        {#each times as time}
-          <Option value={time}>{time}</Option>
-        {/each}
-    </Select>
+    <div class="start-time">
+      <Select class="shaped-outlined" variant="outlined" bind:value={startTime} label="Begynner">
+          <Icon class="material-icons" slot="leadingIcon">schedule</Icon>
+          
+          {#each times as time}
+            <Option value={time}>{time}</Option>
+          {/each}
+      </Select>
+    </div>
     {#if !($isMobile)}
       <p style = "margin-left: 10px; margin-right: 10px"><span class="material-symbols-outlined">
         <span class="material-symbols-outlined">
@@ -172,23 +174,25 @@ function animateValue(id, start, end, duration) {
         </span>
       </p>
     {/if}
-
-    <Select class="shaped-outlined" variant="outlined" bind:value={endTime} label="Slutter">
-        <Icon class="material-icons" slot="leadingIcon">schedule</Icon>
-    
-        {#each times as time}
-          <Option value={time}>{time}</Option>
-        {/each}
-    </Select>
+      <div class="end-time">
+        <Select class="shaped-outlined" variant="outlined" bind:value={endTime} label="Slutter">
+            <Icon class="material-icons" slot="leadingIcon">schedule</Icon>
+        
+            {#each times as time}
+              <Option value={time}>{time}</Option>
+            {/each}
+        </Select>
+      </div>
   </div>
-
-  <Textfield
-  bind:value={hourWage}
-  label="Timeslønn"
-  type="number"
-  suffix="KR"
-
-/>
+  <div class="text-field">
+    <Textfield
+      bind:value={hourWage}
+      label="Timeslønn"
+      type="number"
+      suffix="KR"
+      class="wage-textfield"
+  />
+  </div>
 
   <div class="money">
 
@@ -211,15 +215,28 @@ function animateValue(id, start, end, duration) {
     .main{
       display: flex;
       flex-direction: column;
-      max-width: 97%;
+      max-width: 100%;
       height: 100%;
-      
+
     }
     .clocking{
       display: flex;
       flex-direction: row;
-      margin: 20px;
+      margin: 20px 0px 20px 0;
       align-items: center;
+      justify-content: center;
+    }
+
+    .start-time, .end-time{
+      display: flex;
+    }
+    .text-field{
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    * :global(.wage-textfield){
+      max-width: 100px;
     }
     #money{
       margin-right: 10px;
@@ -238,8 +255,22 @@ function animateValue(id, start, end, duration) {
       margin-top: 50px;
       
     }
+
+    @media (max-width: 340px) {
+    .clocking{
+      flex-direction: column;
+    }
+    .end-time{
+      margin-top: 20px;
+    }
+   }
+    * :global(.mdc-select__anchor){
+      width: 150px
+    }
     * :global(.shaped-outlined), * :global(.shaped-outlined .mdc-select__anchor) {
         border-radius: 28px;
+      
+
     }
     * :global(.shaped-outlined .mdc-text-field__input) {
       padding-left: 32px;
