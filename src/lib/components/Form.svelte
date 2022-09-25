@@ -211,13 +211,15 @@ function animateValue(id, start, end, duration) {
     .main{
       display: flex;
       flex-direction: column;
-      max-width: 90%;
+      max-width: 97%;
       height: 100%;
+      
     }
     .clocking{
       display: flex;
       flex-direction: row;
       margin: 20px;
+      align-items: center;
     }
     #money{
       margin-right: 10px;
