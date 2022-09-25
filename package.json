@@ -32,6 +32,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/fira-mono": "^4.5.0"
+		"@fontsource/fira-mono": "^4.5.0",
+		"svelte-device-detector": "^0.2.2",
+		"svelte-device-info": "^1.0.0"
 	}
 }
