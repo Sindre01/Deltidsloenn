@@ -15,6 +15,7 @@
 	},
 	"devDependencies": {
 		"@smui/select": "^6.1.0",
+		"@smui/textfield": "^6.1.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@types/cookie": "^0.5.1",

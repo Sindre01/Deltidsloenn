@@ -1,0 +1,17 @@
+{
+    "Weekday": [
+        {"time": "18:00", "addition": 22}, 
+        {"time": "21:00", "addition": 45} 
+    ],
+
+    "Saturday": [
+        {"time": "13:00", "addition": 45}, 
+        {"time": "15:00", "addition": 55}, 
+        {"time": "18:00", "addition": 110} 
+    ],
+
+    "Sunday": [
+        {"time": "", "addition": 110}
+    ]
+    
+}
