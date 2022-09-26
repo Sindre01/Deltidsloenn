@@ -12,6 +12,7 @@
   let endTime = "23:00";
   let hourWage = 166;
   let money = 0;
+  let addition = 0;
 
   let upgrade = 0 //-1: salary went down, 0: salary stayed the same, 1: salary went up
 
@@ -40,6 +41,7 @@
     let time = times[timeIndex]
     let j = timeIndex
     let newMoney = 0;
+    addition = 0;
     //Calculates the salary from start time to end time:
     while (endTime != time) {
       //Check if a new hour addition is being active
@@ -49,9 +51,10 @@
           console.log("new addition: " + startAddition)
         }
       })
-      console.log(hourWage)
+      // console.log(hourWage)
       newMoney += (Number(startAddition) + Number(hourWage))
-      console.log(newMoney)
+      // console.log(newMoney)
+      addition += Number(startAddition)
       
       j++
       if (j == times.length) {
@@ -64,7 +67,6 @@
  
     animateValue("money", money, newMoney, 500);
     money = newMoney
-
   }
 
   function find_day_additions(){
@@ -137,9 +139,6 @@ function animateValue(id, start, end, duration) {
     timer = setInterval(run, stepTime);
     run();
 }
-
-
-
 </script>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -187,27 +186,31 @@ function animateValue(id, start, end, duration) {
   <div class="text-field">
     <Textfield
       bind:value={hourWage}
-      label="Timeslønn"
+      label="Timelønn"
       type="number"
       suffix="KR"
       class="wage-textfield"
   />
   </div>
 
-  <div class="money">
+  <div class="sum">
+    <div class="money">
+  
+      {#if upgrade == 1}
+        <Icon class="material-icons" slot="leadingIcon" style="color: lightgreen; margin-right: 10px; font-size: 30px">trending_up</Icon>
+      {:else if upgrade == -1}
+        <Icon class="material-icons" slot="leadingIcon" style="color: red; margin-right: 10px; font-size: 30px">trending_down</Icon>
+      {:else} 
+        <Icon class="material-icons" slot="leadingIcon" style="color: whitesmoke; margin-right: 10px; font-size: 30px">trending_flat</Icon>
+      {/if}
+      
+      <p title = "Kveldstillegg er {addition.toString()} KR"  id = "money">{money} </p>
+      <p class = "money-currency">KR</p>
+    </div>
+    <!-- <div class = "addition"><p>( Kveldstillegg: {addition} KR )</p></div> -->
 
-    {#if upgrade == 1}
-      <Icon class="material-icons" slot="leadingIcon" style="color: lightgreen; margin-right: 10px; font-size: 30px">trending_up</Icon>
-    {:else if upgrade == -1}
-      <Icon class="material-icons" slot="leadingIcon" style="color: red; margin-right: 10px; font-size: 30px">trending_down</Icon>
-    {:else} 
-      <Icon class="material-icons" slot="leadingIcon" style="color: whitesmoke; margin-right: 10px; font-size: 30px">trending_flat</Icon>
-    {/if}
-
-    <p id = "money">{money} </p>
-
-    <p class = "money-currency">KR</p>
   </div>
+
 
 </div>
 
@@ -219,6 +222,15 @@ function animateValue(id, start, end, duration) {
       height: 100%;
 
     }
+    .sum{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    /* .addition{
+      margin-top:0 px;
+    } */
     .clocking{
       display: flex;
       flex-direction: row;
@@ -241,7 +253,7 @@ function animateValue(id, start, end, duration) {
     #money{
       margin-right: 10px;
       font-size: 40px;
-
+      cursor: pointer;
     }
     .money-currency { 
       font-size: 20px;

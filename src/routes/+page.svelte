@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>UB-Kalkulator</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
@@ -20,6 +20,7 @@
 	<h1>
 		UB-Kalkulator
 	</h1>
+	<!-- <img src='../StorLogo.png' alt='Logo'/> -->
 
 	<h2>
 		Regner ut lønn inkludert kveldstillegg utifra <a href="https://www.virke.no/tariff-og-lonn/finn-tariffavtale/landsoverenskomsten-hk/" style="color: red">HK</a>
