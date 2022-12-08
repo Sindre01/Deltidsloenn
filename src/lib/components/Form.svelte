@@ -4,6 +4,9 @@
   import Icon from '@smui/select/icon';
   import UB from "$lib/data/UB.json";
   import {isMobile} from "$lib/store/store.js"
+  import Calculation from "./calculator/Calculation.svelte"
+  import Dialog, { Content } from '@smui/dialog';
+  import IconButton from '@smui/icon-button';
 
   let days = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
   let times= ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
@@ -12,13 +15,24 @@
   let endTime = "23:00";
   let hourWage = 166;
   let money = 0;
-  let addition = 0;
+  let sumAddition = 0
+  let open= false;
+  let withoutAddition = 0;
+  let valid = false; //calculates salary
+  $:console.log(valid)
+ 
+  let calculationsObj = {hourWage: 0, timesAndAdditions: [["", 0]], sumSalary: 0, sumAdditions: 0}
 
   let upgrade = 0 //-1: salary went down, 0: salary stayed the same, 1: salary went up
 
-  $: if ((times.includes(startTime)) && (times.includes(endTime)) && (days.includes(day)) && !isNaN(hourWage)){
-    console.log("Hour wage: " + hourWage)
 
+  $:if (hourWage.toString().length > 3) { //max 3 digits
+      hourWage = Number(hourWage.toString().slice(0,3)) 
+      //No need for calucate the same value again
+
+    } else if (valid = ((times.includes(startTime)) && (times.includes(endTime)) && (days.includes(day)) && !isNaN(hourWage))){
+
+    console.log("Hour wage: " + hourWage)
 
     //Find the additions for the chosen day
     let additonsArr = find_day_additions()
@@ -40,10 +54,18 @@
 
     let time = times[timeIndex]
     let j = timeIndex
-    let newMoney = 0;
-    addition = 0;
+    withoutAddition = 0;
+    sumAddition = 0;
+
+    let allTimesAndAdditions = []
+    calculationsObj.sumSalary = 0
+    calculationsObj.sumAdditions = 0
+    calculationsObj.timesAndAdditions = [["", 0]]
+
     //Calculates the salary from start time to end time:
     while (endTime != time) {
+      console.log(additonsArr)
+      let nextTime = ""
       //Check if a new hour addition is being active
       additonsArr.forEach((timeObj) => {
         if (timeObj.time == time){
@@ -51,10 +73,12 @@
           console.log("new addition: " + startAddition)
         }
       })
-      // console.log(hourWage)
-      newMoney += (Number(startAddition) + Number(hourWage))
-      // console.log(newMoney)
-      addition += Number(startAddition)
+      let timeIndex = times.indexOf(time)
+      nextTime = (timeIndex == times.length-1)? times[0]: times[timeIndex+1]
+      console.log(time + " - " + nextTime + ": " + hourWage + " + " + startAddition)
+      allTimesAndAdditions.push([time.substring(0,2) + "-" + nextTime.substring(0,2), startAddition])
+      withoutAddition +=  Number(hourWage)
+      sumAddition += Number(startAddition)
       
       j++
       if (j == times.length) {
@@ -64,9 +88,14 @@
       //Next index
       time = times[j]
     }
- 
+    calculationsObj.hourWage = hourWage
+    calculationsObj.sumSalary = withoutAddition
+    calculationsObj.sumAdditions = sumAddition
+    calculationsObj.timesAndAdditions = allTimesAndAdditions
+
+    let newMoney = withoutAddition + sumAddition
     animateValue("money", money, newMoney, 500);
-    money = newMoney
+    money = newMoney;
   }
 
   function find_day_additions(){
@@ -86,59 +115,59 @@
 	 * @param {number} end
 	 * @param {number} duration
 	 */
-function animateValue(id, start, end, duration) {
-    // assumes integer values for start and end
-    
-    var obj = document.getElementById(id);
-    if (obj == null) {
-      return;
-    }
-    if (start < end){
-        obj.style.color = "lightgreen"
-        upgrade = 1
-        console.log("Green")
-      } else if (start > end){
-        console.log("Red")
-        obj.style.color = "red"
-        upgrade = -1
-      } else {
-        console.log("whitesmoke")
-        obj.style.color = "whitesmoke"
-        upgrade = 0
+  function animateValue(id, start, end, duration) {
+      // assumes integer values for start and end
+      
+      var obj = document.getElementById(id);
+      if (obj == null) {
+        return;
       }
+      if (start < end){
+          obj.style.color = "lightgreen"
+          upgrade = 1
+          console.log("Green")
+        } else if (start > end){
+          console.log("Red")
+          obj.style.color = "red"
+          upgrade = -1
+        } else {
+          console.log("whitesmoke")
+          obj.style.color = "whitesmoke"
+          upgrade = 0
+        }
 
-    var range = end - start;
-    // no timer shorter than 50ms (not really visible any way)
-    var minTimer = 50;
-    // calc step time to show all interediate values
-    var stepTime = Math.abs(Math.floor(duration / range));
+      var range = end - start;
+      // no timer shorter than 50ms (not really visible any way)
+      var minTimer = 50;
+      // calc step time to show all interediate values
+      var stepTime = Math.abs(Math.floor(duration / range));
+      
+      // never go below minTimer
+      stepTime = Math.max(stepTime, minTimer);
+      
+      // get current time and calculate desired end time
+      var startTime = new Date().getTime();
+      var endTime = startTime + duration;
+      /**
+     * @type {string | number | NodeJS.Timer | undefined}
+     */
+      var timer;
     
-    // never go below minTimer
-    stepTime = Math.max(stepTime, minTimer);
-    
-    // get current time and calculate desired end time
-    var startTime = new Date().getTime();
-    var endTime = startTime + duration;
-    /**
-	 * @type {string | number | NodeJS.Timer | undefined}
-	 */
-    var timer;
-  
-    function run() {
-        var now = new Date().getTime();
-        var remaining = Math.max((endTime - now) / duration, 0);
-        var value = Math.round(end - (remaining * range));
-        if (obj != null){
-          obj.innerHTML = value.toString();
-        }
-        if (value == end) {
-            clearInterval(timer);
-        }
-    }
-    
-    timer = setInterval(run, stepTime);
-    run();
-}
+      function run() {
+          var now = new Date().getTime();
+          var remaining = Math.max((endTime - now) / duration, 0);
+          var value = Math.round(end - (remaining * range));
+          if (obj != null){
+            obj.innerHTML = value.toString();
+          }
+          if (value == end) {
+              clearInterval(timer);
+          }
+      }
+      
+      timer = setInterval(run, stepTime);
+      run();
+  }
 </script>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -190,6 +219,7 @@ function animateValue(id, start, end, duration) {
       type="number"
       suffix="KR"
       class="wage-textfield"
+      input$maxlength="3"
   />
   </div>
 
@@ -204,13 +234,20 @@ function animateValue(id, start, end, duration) {
         <Icon class="material-icons" slot="leadingIcon" style="color: whitesmoke; margin-right: 10px; font-size: 30px">trending_flat</Icon>
       {/if}
       
-      <p title = "Kveldstillegg er {addition.toString()} KR"  id = "money">{money} </p>
+      <p title = "Kveldstillegg er {sumAddition.toString()} KR"  id = "money" on:click={()=> (valid? open = true: open = false)}>{money} </p>
       <p class = "money-currency">KR</p>
+      
     </div>
     <!-- <div class = "addition"><p>( Kveldstillegg: {addition} KR )</p></div> -->
 
   </div>
 
+  <Dialog bind:open sheet aria-describedby="sheet-content">
+    <Content id="sheet-content">
+      <IconButton action="close" class="material-icons">close</IconButton>
+      <Calculation calculationsObj={calculationsObj}/>
+    </Content>
+  </Dialog>
 
 </div>
 
@@ -220,7 +257,6 @@ function animateValue(id, start, end, duration) {
       flex-direction: column;
       max-width: 100%;
       height: 100%;
-
     }
     .sum{
       display: flex;
@@ -265,6 +301,7 @@ function animateValue(id, start, end, duration) {
       justify-content: center;
       align-items: center;
       margin-top: 50px;
+      
       
     }
 
