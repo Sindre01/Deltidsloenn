@@ -1,35 +1,8 @@
 <script>
-	
-	// import '../app.css';
-	
-	import { theme } from "$lib/store/store.js";
-	import { onMount } from "svelte";
-
-	onMount(async () => {
-			// Set up our MediaQueryList
-		const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
-		// Initial theme config from current state
-		$theme =  prefersDarkMode.matches ? 'dark' : 'light'
-
-	})
-  
-	function toggleTheme(){
-	  $theme = $theme === "light" ? "dark" : "light";
-	}
-
+	import NavBar from "$lib/components/NavBar.svelte"
 </script>
 
-<svelte:head>
-	{#if $theme == "dark"}
-		<link rel="stylesheet" href="src/theme/dark/_smui-theme.scss" />
-	{:else if $theme == "light"}
-		<link rel="stylesheet" href="src/theme/_smui-theme.scss" />
-	{/if}
-</svelte:head>
-
-<!-- <button on:click={()=>toggleTheme()}> {$theme}</button>
-<a href="/about">about</a>
-<a href = "/">Home</a> -->
+<NavBar/>
 <main>
 	<slot />
 </main>
@@ -49,6 +22,7 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
+
 
 	/* footer {
 		display: flex;

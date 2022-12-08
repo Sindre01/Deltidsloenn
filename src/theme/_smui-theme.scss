@@ -4,7 +4,7 @@
 
 // Svelte Colors! (Dark Theme)
 @use '@material/theme/index' as theme with (
-  $primary: #ff3e00,
+  $primary: #003459,
   $secondary: color.scale(#676778, $whiteness: -10%),
   $surface: color.adjust(color-palette.$grey-900, $blue: +4),
   $background: #000,
@@ -15,11 +15,11 @@
 
 :root {
 	font-family: 'Open Sans', 'Montserrat';
-	--pure-white: #f8ecec;
-	--primary-color: #2f3fd1;
-	--secondary-color: #74abf3;
-	--tertiary-color: #d7e5ee;
-	--accent-color: #003cff;
+	--pure-white: #ffffff;
+	--primary-color:  #00a8e8 ;
+	--secondary-color: #007ea7;
+	--tertiary-color:  #003459;
+	--accent-color: #00171f;
 	--heading-color: whitesmoke;
 	--text-color: black;
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
