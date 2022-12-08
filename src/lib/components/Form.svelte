@@ -4,6 +4,11 @@
   import Icon from '@smui/select/icon';
   import UB from "$lib/data/UB.json";
   import {isMobile} from "$lib/store/store.js"
+  import Calculation from "./calculator/Calculation.svelte"
+  import Dialog, { Content } from '@smui/dialog';
+  import IconButton from '@smui/icon-button';
+
+
 
   let days = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
   let times= ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
@@ -13,6 +18,7 @@
   let hourWage = 166;
   let money = 0;
   let addition = 0;
+  let open= false;
 
   let upgrade = 0 //-1: salary went down, 0: salary stayed the same, 1: salary went up
 
@@ -204,13 +210,20 @@ function animateValue(id, start, end, duration) {
         <Icon class="material-icons" slot="leadingIcon" style="color: whitesmoke; margin-right: 10px; font-size: 30px">trending_flat</Icon>
       {/if}
       
-      <p title = "Kveldstillegg er {addition.toString()} KR"  id = "money">{money} </p>
+      <p title = "Kveldstillegg er {addition.toString()} KR"  id = "money" on:click={()=> open = true}>{money} </p>
       <p class = "money-currency">KR</p>
+      
     </div>
     <!-- <div class = "addition"><p>( Kveldstillegg: {addition} KR )</p></div> -->
 
   </div>
 
+  <Dialog bind:open sheet aria-describedby="sheet-content">
+    <Content id="sheet-content">
+      <IconButton action="close" class="material-icons">close</IconButton>
+      <Calculation/>
+    </Content>
+  </Dialog>
 
 </div>
 
@@ -220,7 +233,6 @@ function animateValue(id, start, end, duration) {
       flex-direction: column;
       max-width: 100%;
       height: 100%;
-
     }
     .sum{
       display: flex;
@@ -265,6 +277,7 @@ function animateValue(id, start, end, duration) {
       justify-content: center;
       align-items: center;
       margin-top: 50px;
+      
       
     }
 

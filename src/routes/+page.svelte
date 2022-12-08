@@ -12,8 +12,8 @@
 </script>
 
 <svelte:head>
-	<title>UB-Kalkulator</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Enklere lønn</title>
+	<meta name="Din lønnshjelp" content="" />
 </svelte:head>
 
 <section>

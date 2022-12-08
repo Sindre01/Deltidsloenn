@@ -9,9 +9,9 @@
 	<slot />
 </main>
 
-<footer>
+<!-- <footer>
 	<p>Laget av Sindre Erichsen</p>
-</footer>
+</footer> -->
 
 <style>
 	main {
