@@ -1,10 +1,35 @@
 <script>
-
+	
 	// import '../app.css';
+	
+	import { theme } from "$lib/store/store.js";
+	import { onMount } from "svelte";
+
+	onMount(async () => {
+			// Set up our MediaQueryList
+		const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+		// Initial theme config from current state
+		$theme =  prefersDarkMode.matches ? 'dark' : 'light'
+
+	})
+  
+	function toggleTheme(){
+	  $theme = $theme === "light" ? "dark" : "light";
+	}
+
 </script>
 
-<!-- <Header /> -->
+<svelte:head>
+	{#if $theme == "dark"}
+		<link rel="stylesheet" href="src/theme/dark/_smui-theme.scss" />
+	{:else if $theme == "light"}
+		<link rel="stylesheet" href="src/theme/_smui-theme.scss" />
+	{/if}
+</svelte:head>
 
+<!-- <button on:click={()=>toggleTheme()}> {$theme}</button>
+<a href="/about">about</a>
+<a href = "/">Home</a> -->
 <main>
 	<slot />
 </main>
@@ -25,7 +50,7 @@
 		box-sizing: border-box;
 	}
 
-	footer {
+	/* footer {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -41,5 +66,5 @@
 		footer {
 			padding: 40px 0;
 		}
-	}
+	} */
 </style>

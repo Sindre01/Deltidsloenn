@@ -44,9 +44,5 @@ div{
   justify-content: center;
   align-items: center;
 }
-.tot{
-  color: red;
-  font-weight: bold
-}
 
 </style>

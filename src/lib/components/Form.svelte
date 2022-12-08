@@ -19,10 +19,7 @@
   let open= false;
   let withoutAddition = 0;
   let valid = false; //calculates salary
-  $:console.log(valid)
- 
   let calculationsObj = {hourWage: 0, timesAndAdditions: [["", 0]], sumSalary: 0, sumAdditions: 0}
-
   let upgrade = 0 //-1: salary went down, 0: salary stayed the same, 1: salary went up
 
 
@@ -31,8 +28,6 @@
       //No need for calucate the same value again
 
     } else if (valid = ((times.includes(startTime)) && (times.includes(endTime)) && (days.includes(day)) && !isNaN(hourWage))){
-
-    console.log("Hour wage: " + hourWage)
 
     //Find the additions for the chosen day
     let additonsArr = find_day_additions()
@@ -64,18 +59,17 @@
 
     //Calculates the salary from start time to end time:
     while (endTime != time) {
-      console.log(additonsArr)
       let nextTime = ""
       //Check if a new hour addition is being active
       additonsArr.forEach((timeObj) => {
         if (timeObj.time == time){
           startAddition = timeObj.addition
-          console.log("new addition: " + startAddition)
         }
       })
       let timeIndex = times.indexOf(time)
       nextTime = (timeIndex == times.length-1)? times[0]: times[timeIndex+1]
       console.log(time + " - " + nextTime + ": " + hourWage + " + " + startAddition)
+      
       allTimesAndAdditions.push([time.substring(0,2) + "-" + nextTime.substring(0,2), startAddition])
       withoutAddition +=  Number(hourWage)
       sumAddition += Number(startAddition)
@@ -175,7 +169,7 @@
 <div class="main">
 
 
-  <Select class="shaped-outlined" variant="outlined" bind:value={day} label="Dag">
+  <Select class="shaped-outlined" variant="outlined" bind:value={day} label="Dag" required>
     <Icon class="material-icons" slot="leadingIcon">event</Icon>
     
     {#each days as day}
@@ -186,7 +180,7 @@
   <!-- <h2> Klokkeslett: </h2> -->
   <div class = "clocking">
     <div class="start-time">
-      <Select class="shaped-outlined" variant="outlined" bind:value={startTime} label="Begynner">
+      <Select class="shaped-outlined" variant="outlined" bind:value={startTime} label="Begynner" >
           <Icon class="material-icons" slot="leadingIcon">schedule</Icon>
           
           {#each times as time}
@@ -220,6 +214,7 @@
       suffix="KR"
       class="wage-textfield"
       input$maxlength="3"
+      required
   />
   </div>
 
