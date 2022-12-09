@@ -180,7 +180,7 @@
   <!-- <h2> Klokkeslett: </h2> -->
   <div class = "clocking">
     <div class="start-time">
-      <Select class="shaped-outlined" variant="outlined" bind:value={startTime} label="Begynner" >
+      <Select class="shaped-outlined"   variant="outlined" bind:value={startTime} label="Begynner" >
           <Icon class="material-icons" slot="leadingIcon">schedule</Icon>
           
           {#each times as time}

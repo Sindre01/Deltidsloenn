@@ -17,9 +17,9 @@
 </svelte:head>
 
 <section>
-	<h2>
+	<h1>
 		UB-Kalkulator
-	</h2>
+	</h1>
 	<!-- <img src='../StorLogo.png' alt='Logo'/> -->
 
 	<h2>
