@@ -17,11 +17,13 @@
 	font-family: 'Open Sans', 'Montserrat';
 	--pure-white: #ffffff;
 	--primary-color:  #003459;
-	--secondary-color: #007ea7;
+	--secondary-color: #007ea7;//#007ea7;
 	--tertiary-color:  #00a8e8 ;
 	--accent-color: #003cff;
 	// --heading-color: whitesmoke;
 	--text-color: black;
+	--red-color: red;
+	--green-color: rgb(0, 255, 0);
 	// --underline-color: var(--secondary-color)
 
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
@@ -33,7 +35,7 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	background: var(--primary-color);
-	background: linear-gradient(180deg, var(--primary-color) 20%, var(--secondary-color) 70%, var(--tertiary-color) 100%);
+	background: linear-gradient(180deg, var(--primary-color) 20%, var(--secondary-color) 80%, var(--tertiary-color) 100%);
 }
 
 body::before {
