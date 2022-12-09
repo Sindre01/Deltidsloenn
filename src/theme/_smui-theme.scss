@@ -2,7 +2,7 @@
 @use 'sass:color';
 @use '@material/theme/color-palette';
 
-// Svelte Colors! (Dark Theme)
+
 @use '@material/theme/index' as theme with (
   $primary: #ff3e00,
   $secondary: color.scale(#676778, $whiteness: -10%),
@@ -15,12 +15,12 @@
 
 :root {
 	font-family: 'Open Sans', 'Montserrat';
-	--pure-white: #f8ecec;
+	--pure-white: #ffffff;
 	--primary-color:  #003459;
 	--secondary-color: #007ea7;
 	--tertiary-color:  #00a8e8 ;
 	--accent-color: #003cff;
-	--heading-color: whitesmoke;
+	// --heading-color: whitesmoke;
 	--text-color: black;
 	// --underline-color: var(--secondary-color)
 
