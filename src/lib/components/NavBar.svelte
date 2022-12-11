@@ -53,9 +53,9 @@ function setCurrent(el){
 
 <svelte:head>
 	{#if $theme == "dark"}
-		<link rel="stylesheet" href="src/theme/dark/_smui-theme.scss" />
+		<link rel="stylesheet" href="/smui-dark.css" />
 	{:else if $theme == "light"}
-		<link rel="stylesheet" href="src/theme/_smui-theme.scss" />
+		<link rel="stylesheet" href="/smui.css" />
 	{/if}
 </svelte:head>
 
