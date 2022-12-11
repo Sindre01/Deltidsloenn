@@ -117,11 +117,11 @@
         return;
       }
       if (start < end){
-          obj.style.color = "lightgreen"
+          obj.style.color = "var(--green-color)"
           upgrade = 1
-          console.log("Green")
+     
         } else if (start > end){
-          console.log("Red")
+          console.log("var(--red-color")
           obj.style.color = "red"
           upgrade = -1
         } else {
@@ -180,7 +180,7 @@
   <!-- <h2> Klokkeslett: </h2> -->
   <div class = "clocking">
     <div class="start-time">
-      <Select class="shaped-outlined" variant="outlined" bind:value={startTime} label="Begynner" >
+      <Select class="shaped-outlined"   variant="outlined" bind:value={startTime} label="Begynner" >
           <Icon class="material-icons" slot="leadingIcon">schedule</Icon>
           
           {#each times as time}
@@ -222,9 +222,9 @@
     <div class="money">
   
       {#if upgrade == 1}
-        <Icon class="material-icons" slot="leadingIcon" style="color: lightgreen; margin-right: 10px; font-size: 30px">trending_up</Icon>
+        <Icon class="material-icons" slot="leadingIcon" style="color: var(--green-color); margin-right: 10px; font-size: 30px">trending_up</Icon>
       {:else if upgrade == -1}
-        <Icon class="material-icons" slot="leadingIcon" style="color: red; margin-right: 10px; font-size: 30px">trending_down</Icon>
+        <Icon class="material-icons" slot="leadingIcon" style="color: var(--red-color); margin-right: 10px; font-size: 30px">trending_down</Icon>
       {:else} 
         <Icon class="material-icons" slot="leadingIcon" style="color: whitesmoke; margin-right: 10px; font-size: 30px">trending_flat</Icon>
       {/if}

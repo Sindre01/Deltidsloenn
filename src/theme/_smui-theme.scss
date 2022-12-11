@@ -2,7 +2,7 @@
 @use 'sass:color';
 @use '@material/theme/color-palette';
 
-// Svelte Colors! (Dark Theme)
+
 @use '@material/theme/index' as theme with (
   $primary: #ff3e00,
   $secondary: color.scale(#676778, $whiteness: -10%),
@@ -15,13 +15,17 @@
 
 :root {
 	font-family: 'Open Sans', 'Montserrat';
-	--pure-white: #f8ecec;
-	--primary-color: #2f3fd1;
-	--secondary-color: #74abf3;
-	--tertiary-color: #d7e5ee;
+	--pure-white: #ffffff;
+	--primary-color:  #003459;
+	--secondary-color: #007ea7;//#007ea7;
+	--tertiary-color:  #00a8e8 ;
 	--accent-color: #003cff;
-	--heading-color: whitesmoke;
+	// --heading-color: whitesmoke;
 	--text-color: black;
+	--red-color: red;
+	--green-color: rgb(0, 255, 0);
+	// --underline-color: var(--secondary-color)
+
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
@@ -30,8 +34,8 @@
 body {
 	min-height: 100vh;
 	margin: 0;
-	background-color: var(--primary-color);
-
+	background: var(--primary-color);
+	background: linear-gradient(180deg, var(--primary-color) 20%, var(--secondary-color) 80%, var(--tertiary-color) 100%);
 }
 
 body::before {

@@ -16,10 +16,14 @@
 
 :root {
 	font-family: 'Open Sans', 'Montserrat';
+	// font-family: 'Poppins', sans-serif;
+
 	--pure-white: #ffffff;
-	--primary-color: #1b1b1b;
-	--secondary-color: #363636;
-	--tertiary-color: #000000;
+	--primary-color: #000000;
+	--secondary-color: #1b1b1b;
+	--tertiary-color: #363636;
+	--red-color: red;
+	--green-color: rgb(0, 255, 0);
 	--accent-color: #ff3e00;
 	--heading-color: whitesmoke;
 	--text-color: whitesmoke;
@@ -31,13 +35,8 @@
 body {
 	min-height: 100vh;
 	margin: 0;
-	background-color: var(--primary-color);
-	background: linear-gradient(
-		180deg,
-		var(--primary-color) 0%,
-		var(--secondary-color) 10.45%,
-		var(--tertiary-color) 41.35%
-	);
+	background: var(--primary-color);
+	background: linear-gradient(180deg, var(--primary-color) 20%, var(--secondary-color) 70%, var(--tertiary-color) 100%);
 }
 
 body::before {
