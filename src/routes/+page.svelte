@@ -1,5 +1,6 @@
 <script>
     import {theme} from "$lib/store/store"
+    
 </script>
 
 <svelte:head>
