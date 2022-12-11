@@ -86,7 +86,7 @@ function setCurrent(el){
             <ul>
                 <li><a class:current={current === 0} on:click={()=>setCurrent(0)} href = "/">Hjem</a></li>
                 <li><a class:current={current === 1}  on:click={()=>setCurrent(1)}  href = "/kalkulator">Kalkulator</a></li>
-                <li> <a class:current={current === 2}   on:click={()=>setCurrent(2)} href="/about">about</a></li>
+                <!-- <li> <a class:current={current === 2}   on:click={()=>setCurrent(2)} href="/about">about</a></li> -->
             </ul>
         </div>
     {/if}
