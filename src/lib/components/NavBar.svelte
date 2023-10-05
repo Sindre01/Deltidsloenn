@@ -69,13 +69,13 @@ function setCurrent(el){
             <a href = "/">Deltidslønn</a>
         </IconButton> -->
     
-        <IconButton style = "position: fixed; right: 10px; top: 5px;" ripple={false} on:click={()=>toggleTheme()}> 
+        <!-- <IconButton style = "position: fixed; right: 10px; top: 5px;" ripple={false} on:click={()=>toggleTheme()}> 
             {#if $theme == "light"}
                 <span class="material-icons">dark_mode</span>
             {:else}
                 <span class="material-icons">light_mode</span>
             {/if}
-        </IconButton>
+        </IconButton> -->
     </div>
 
 

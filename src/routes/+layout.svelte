@@ -5,6 +5,7 @@
 <NavBar/>
 <main>
 	<slot />
+
 </main>
 
 <!-- <footer>
@@ -22,6 +23,7 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
+	
 	
 
 
