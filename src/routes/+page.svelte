@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Deltidslønn</title>
+	<title>Enklere lønn</title>
 	<meta name="Din lønnshjelp" content="" />
 </svelte:head>
 
