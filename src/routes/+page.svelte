@@ -18,7 +18,7 @@
     <div class = "title">
         <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100" class="arrow left">
             <path d="M100 50 L20 50" fill="transparent" stroke="white" stroke-width="2" id="leftArrowPath" />
-            <circle cx="100" cy="50" r="2" fill="white" id="leftArrowCircle" />
+            <!-- <circle cx="100" cy="50" r="2" fill="white" id="leftArrowCircle" /> -->
         </svg>
         <h1>Enklere lønn</h1>
         <p>Lønn gjort enklere</p>
@@ -27,7 +27,7 @@
         <!-- Right Arrow Animation -->
         <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100" class="arrow right">
             <path d="M100 50 L180 50" fill="transparent" stroke="white" stroke-width="2" id="rightArrowPath" />
-            <circle cx="100" cy="50" r="2" fill="white" id="rightArrowCircle" />
+            <!-- <circle cx="100" cy="50" r="2" fill="white" id="rightArrowCircle" /> -->
         </svg>
     
 
@@ -118,14 +118,12 @@
         margin: 0px;
         font-size: 70px;
         font-weight: 600;
-        background-image: linear-gradient(to left, #553c9a, #b393d3);
+        /* background-image: linear-gradient(to left, #553c9a, #b393d3); */
+        background-image: linear-gradient(to left, #007ea7, #00a8e8);
         color: transparent;
         background-clip: text;
         -webkit-background-clip: text;
-        text-shadow: 2px 2px 4px rgba(179, 147, 211, 0.1),
-               3px 4px 4px rgba(179, 147, 211, 0.15),
-               4px 6px 4px rgba(179, 147, 211, 0.2),
-               5px 8px 4px rgab(179, 147, 211, 0.25);
+
 
     }
     p {
